@@ -66,8 +66,7 @@ export class CountriesComponent implements OnInit {
     //   // this.dateWiseData = result;
     //   this.updateChart();
     // })
-
-    
+        
   }
 
   updateChart(){
@@ -76,6 +75,7 @@ export class CountriesComponent implements OnInit {
 
     this.selectedCountryDate.forEach(cs=> {
       dataTable.push([cs.date , cs.cases])
+      
     })
 
     this.lineChart = {

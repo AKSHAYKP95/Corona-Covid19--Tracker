@@ -11,8 +11,9 @@ import { DateWiseData } from 'src/app/models/date-wise-data'
 })
 export class DataServiceService {
 
-  private globalDataUrl = 'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/08-01-2020.csv';
+  private globalDataUrl = 'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/';
   private dateWiseDataUrl = 'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv';
+  date=new Date();
 
   constructor(private http : HttpClient) { }
 
@@ -55,13 +56,15 @@ export class DataServiceService {
     )
     
   }
+   
 
 
   getGlobalData(){
-
-    return this.http.get(this.globalDataUrl , { responseType : 'text' }).pipe(
+    this.date.setDate(this.date.getDate()-1);
+    var Fdate=this.formatDate(this.date);
+    console.log(Fdate);
+    return this.http.get(this.globalDataUrl+Fdate+".csv", { responseType : 'text' }).pipe(
       map(result=>{
-
         let data : GlobalDataSummary[] = [];
         let raw =  {};
         let rows = result.split('\n');
@@ -110,4 +113,19 @@ export class DataServiceService {
     )
 
   }
+  public formatDate(date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2) 
+        month = '0' + month;
+    if (day.length < 2) 
+        day = '0' + day;
+
+    var formatedDate= [month,day,year].join('-');
+    var millis= Date.parse(formatedDate);
+    return formatedDate;
+}
 }

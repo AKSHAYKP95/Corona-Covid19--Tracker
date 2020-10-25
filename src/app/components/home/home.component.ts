@@ -42,23 +42,20 @@ export class HomeComponent implements OnInit {
          value = cs.active;     
       
       if(caseType == "r")
-         if(cs.active>2000)
+         if(cs.recovered>2000)
          value = cs.recovered;     
 
       if(caseType == "d")
-         if(cs.active>2000)
+         if(cs.deaths>2000)
          value = cs.deaths;     
 
       if(caseType == "c")
-         if(cs.active>2000)
+         if(cs.confirmed>2000)
          value = cs.confirmed;     
-
          datatable.push([
           cs.country , value
          ])
     })
-
-    // console.log(datatable);
 
 
     this.pieChart = {
@@ -116,10 +113,11 @@ export class HomeComponent implements OnInit {
       }
     )
   }
-  
-  updateChart(input : HTMLInputElement){
-    this.initChart(input.value);
+  updateChart(event: any){
+    console.log(event.target.value);
+    this.initChart(event.target.value);
 
   }
+  
 
 }

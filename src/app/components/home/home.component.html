@@ -1,57 +1,56 @@
-<div class="ui  dimmer" [class.active] = 'loading'>
-  <div class="ui text loader">Loading</div>
+<div class="ui  dimmer" [class.active]='loading'>
+    <div class="ui text loader">Loading</div>
 </div>
 
 
 <div class="jumbotron bg-white text-center">
     <h1 class="display-4">Corona Covid-19 Tracker</h1>
     <hr>
-    <app-dashboard-card [totalConfirmed]='totalConfirmed' [totalActive]='totalActive'
-    [totalDeaths]='totalDeaths'[totalRecovered]='totalRecovered'>    
+    <app-dashboard-card [totalConfirmed]='totalConfirmed' [totalActive]='totalActive' [totalDeaths]='totalDeaths' [totalRecovered]='totalRecovered'>
     </app-dashboard-card>
-    
+
 </div>
 
 <hr>
 
 
 <div class="ui form">
-  <div class="inline fields">
-    <label for="caseType">Select Case Type : </label>
-    <div class="field">
-      <div class="ui radio checkbox">
-        <input type="radio" value="c" name="caseType" id="c" #c (click)='updateChart(c)' checked="" tabindex="0" class="hidden">
-        <label for="c">Confirmed</label>
-      </div>
-    </div>
-    <div class="field">
-      <div class="ui radio checkbox">
-        <input type="radio" value="d" name="caseType" id="d" #d (click)='updateChart(d)' tabindex="0" class="hidden">
-        <label for="d">Deaths</label>
-      </div>
-    </div>
-    <div class="field">
-      <div class="ui radio checkbox">
-        <input type="radio" value="r" name="caseType" id="r" #r (click)='updateChart(r)' tabindex="0" class="hidden">
-        <label for="r">Recovered</label>
-      </div>
-    </div>
-    <div class="field">
-      <div class="ui radio checkbox">
-        <input type="radio" value="a" name="caseType" id="a" #a (click)='updateChart(a)' tabindex="0" class="hidden">
-        <label for="a">Active</label>
-      </div>
-    </div>
-  </div>
-
-<div class="row">
-
-    <div class="col">
-        <google-chart [data]="columnChart"></google-chart>
+    <div class="inline fields">
+        <label for="caseType">Select Case Type : </label>
+        <div class="field">
+            <div class="ui radio checkbox">
+                <input type="radio" value="c" name="caseType" id="c" #c (click)='updateChart($event)' checked="" tabindex="0" class="hidden">
+                <label for="c">Confirmed</label>
+            </div>
+        </div>
+        <div class="field">
+            <div class="ui radio checkbox">
+                <input type="radio" value="d" name="caseType" id="d" #d (click)='updateChart($event)' tabindex="0" class="hidden">
+                <label for="d">Deaths</label>
+            </div>
+        </div>
+        <div class="field">
+            <div class="ui radio checkbox">
+                <input type="radio" value="r" name="caseType" id="r" #r (click)='updateChart($event)' tabindex="0" class="hidden">
+                <label for="r">Recovered</label>
+            </div>
+        </div>
+        <div class="field">
+            <div class="ui radio checkbox">
+                <input type="radio" value="a" name="caseType" id="a" #a (click)='updateChart($event)' tabindex="0" class="hidden">
+                <label for="a">Active</label>
+            </div>
+        </div>
     </div>
 
-    <div class="col">
-        <google-chart [data]="pieChart"></google-chart>
-    </div>
+    <div class="row">
 
-</div>
+        <div class="col">
+            <google-chart [data]="columnChart"></google-chart>
+        </div>
+
+        <div class="col">
+            <google-chart [data]="pieChart"></google-chart>
+        </div>
+
+    </div>
