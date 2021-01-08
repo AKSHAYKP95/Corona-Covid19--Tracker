@@ -66,6 +66,7 @@ export class CountriesComponent implements OnInit {
     //   // this.dateWiseData = result;
     //   this.updateChart();
     // })
+    //Sandeep
         
   }
 
